@@ -20,10 +20,13 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
                            Target target, int hit_strenth) {
     for (int i = 0; i < max_players; i++) {
         if(player_array[i]== nullptr){
-            Player new_player=
+            Weapon weapon=Weapon(weaponName,target,hit_strenth);
+            Player new_player=Player(playerName,weapon);
+            return SUCCESS;
         }
         if (player_array[i]->isPlayer(playerName)) {
             return NAME_ALREADY_EXSISTS;
         }
     }
+    return GAME_FULL;
 }
