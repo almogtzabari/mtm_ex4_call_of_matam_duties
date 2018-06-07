@@ -11,7 +11,7 @@ class Game {
     int max_players;
     Player* player_array;
 public:
-    
+    Game(int maxPlayer);
 };
 
 
