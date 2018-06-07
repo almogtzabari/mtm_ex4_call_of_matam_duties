@@ -5,6 +5,9 @@
 #include "Player.h"
 
 
+Player::Player() {
+    
+}
 /**
  ***** Constructor *****
  */
@@ -59,10 +62,16 @@ bool Player::weaponIsWeak(int weaponMinStrength)const {
     return (weapon.getValue()<weaponMinStrength);
 }
 
-bool operator<(const Player &player)const {
-    return (strcmp(this->name,player.name)<0);
+bool operator<(const Player& player1,const Player& player2) {
+    return (strcmp(player1.name,player2.name)<0);
 }
 
-bool operator>(const Player &player)const {
-    return (strcmp(this->name,player.name)>0);
+bool operator>(const Player& player1,const Player& player2){
+    return (strcmp(player1.name,player2.name)>0);
+}
+
+bool Player::fight(Player &player) {
+    if(position!=player.position || weapon.getValue() == player.weapon.getValue()){
+
+    }
 }

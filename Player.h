@@ -20,6 +20,7 @@ class Player {
     int position;
 
 public:
+    Player();
     Player(const char* name, const Weapon& weapon);
     ~Player();
     void nextLevel();
@@ -29,9 +30,10 @@ public:
     void addStrength(int strengthToAdd);
     bool isAlive()const;
     bool weaponIsWeak(int weaponMinStrength)const;
+    bool fight(Player& player);
     friend ostream& operator<<(ostream& os, const Player& player);
-    friend bool operator<(const Player &player)const;
-    friend bool operator>(const Player &player)const;
+    friend bool operator<(const Player& player1,const Player& player2);
+    friend bool operator>(const Player& player1,const Player& player2);
 };
 
 
