@@ -24,7 +24,8 @@ Player::~Player() {
 
 
 ostream& operator<<(ostream& os, const Player& player){
-    return os << "Player name:" << player.name << "weapon:" << player.weapon;
+    return os << "Player name:" << player.name << "weapon:" <<
+              player.weapon;
 }
 
 void Player::nextLevel() {
@@ -58,10 +59,10 @@ bool Player::weaponIsWeak(int weaponMinStrength)const {
     return (weapon.getValue()<weaponMinStrength);
 }
 
-bool Player::operator<(const Player& player1,const Player& player2){
-    return (strcmp(player1.name,player2.name)<0);
+bool operator<(const Player &player)const {
+    return (strcmp(this->name,player.name)<0);
 }
 
-bool Player::operator>(const Player& player1,const Player& player2) {
-    return (strcmp(player1.name,player2.name)>0);
+bool operator>(const Player &player)const {
+    return (strcmp(this->name,player.name)>0);
 }
