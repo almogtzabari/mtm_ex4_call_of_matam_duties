@@ -4,6 +4,23 @@
 
 #include "Player.h"
 
+/**
+ * Default constructor
+ */
+Player::Player(): name(nullptr), weapon(),life(1),strength(1),level(1),position(0) {
+
+}
+
+/**
+ * Copy constructor
+ * @param player
+ */
+Player::Player(const Player& player):
+        name(new char[strlen(player.name)+1]),weapon(player.weapon),
+life(player.life),strength(player.strength),level(player.level),
+        position(player.position){
+    strcpy(name,player.name);
+}
 
 /**
  ***** Constructor *****
@@ -22,6 +39,18 @@ Player::~Player() {
     delete[] name;
 }
 
+Player& Player::operator=(const Player &player) {
+    delete[] name;
+    name = new char[strlen(player.name)+1];
+    strcpy(name,player.name);
+    life = player.life;
+    strength = player.strength;
+    level = player.level;
+    position = player.position;
+    weapon = player.weapon;
+
+
+}
 
 ostream& operator<<(ostream& os, const Player& player){
     return os << "Player name:" << player.name << "weapon:" <<
@@ -49,7 +78,7 @@ void Player::addStrength(int strengthToAdd) {
 }
 
 bool Player::isAlive() const {
-    if(strength<1 || life<1 || level<1){
+    if(strength<1||life<1||level<1){
         return false;
     }
     return true;

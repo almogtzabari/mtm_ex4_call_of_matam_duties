@@ -21,8 +21,10 @@ class Player {
 
 public:
     Player();
+    Player(const Player& player);
     Player(const char* name, const Weapon& weapon);
     ~Player();
+    Player& operator=(const Player& player);
     void nextLevel();
     bool isPlayer(const char* playerName)const;
     void makeStep();
@@ -34,6 +36,7 @@ public:
     friend ostream& operator<<(ostream& os, const Player& player);
     friend bool operator<(const Player& player1,const Player& player2);
     friend bool operator>(const Player& player1,const Player& player2);
+
 };
 
 
