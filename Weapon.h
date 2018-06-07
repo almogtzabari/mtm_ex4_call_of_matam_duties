@@ -21,9 +21,12 @@ char* name;
 Target target;
 int hitStrength;
 public:
-    Weapon(const char* name);
+    Weapon(const char* name,Target target,int hitStrength);
+    ~Weapon();
+    Target getTarget() const;
+    int getHitStrength() const;
+    int getValue() const;
 };
-
 
 
 #endif //MTM_EX4_CALL_OF_MATAM_DUTIES_WEAPON_H
