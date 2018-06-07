@@ -3,4 +3,5 @@ project(mtm_ex4_call_of_matam_duties)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(mtm_ex4_call_of_matam_duties main.cpp)
+add_executable(mtm_ex4_call_of_matam_duties main.cpp Weapon.cpp Weapon.h
+        Player.cpp Player.h Game.cpp Game.h)
