@@ -32,20 +32,20 @@ int Weapon::getValue() const {
     return 3*hitStrength;
 }
 
-bool Weapon::operator==(const Weapon& weapon) const {
-    return this->getValue()==weapon.getValue();
+friend bool operator==(const Weapon& weapon,const Weapon& weapon2) {
+    return weapon.getValue()==weapon2.getValue();
 }
 
-bool Weapon::operator!=(const Weapon& weapon) const {
-    return this->getValue()!=weapon.getValue();
+friend bool operator!=(const Weapon& weapon,const Weapon& weapon2){
+    return weapon.getValue()!=weapon2.getValue();
 }
 
-bool Weapon::operator>(const Weapon &weapon) const {
-    return this->getValue()>weapon.getValue();
+friend bool operator>(const Weapon& weapon,const Weapon& weapon2) {
+    return weapon.getValue()>weapon2.getValue();
 }
 
-bool Weapon::operator<(const Weapon &weapon) const {
-    return this->getValue()<weapon.getValue();
+friend bool operator<(const Weapon& weapon,const Weapon& weapon2) {
+    return weapon.getValue()<weapon2.getValue();
 }
 
 ostream& operator<<(ostream& os, const Weapon& weapon){
