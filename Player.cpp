@@ -99,8 +99,7 @@ bool operator>(const Player& player1,const Player& player2){
 }
 
 bool Player::fight(Player &player) {
-    if(position!=player.position ||
-       weapon.getValue() == player.weapon.getValue()){
+    if(position!=player.position || weapon == player.weapon){
         /* Not in the same position or has same weapon value, therefore
          * shouldn't fight .*/
         return false;
