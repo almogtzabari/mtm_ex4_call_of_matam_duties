@@ -22,6 +22,46 @@ Player::~Player() {
     delete[] name;
 }
 
+
 ostream& operator<<(ostream& os, const Player& player){
-    
+    return os << "Player name:" << player.name << "weapon:" << player.weapon;
+}
+
+void Player::nextLevel() {
+    level++;
+}
+
+bool Player::isPlayer(const char *playerName) const {
+    return (strcmp(playerName,name)==0);
+}
+
+void Player::makeStep() {
+    position++;
+}
+
+void Player::addLife() {
+    life++;
+}
+
+void Player::addStrength(int strengthToAdd) {
+    strength+=strengthToAdd;
+}
+
+bool Player::isAlive() const {
+    if(strength<1 || life<1 || level<1){
+        return false;
+    }
+    return true;
+}
+
+bool Player::weaponIsWeak(int weaponMinStrength) {
+    return (weapon.getValue()<weaponMinStrength);
+}
+
+bool Player::operator<(const Player player2) const {
+    return (strcmp(this->name,player2.name)<0);
+}
+
+bool Player::operator>(const Player player2) const {
+    return (strcmp(this->name,player2.name)>0);
 }

@@ -22,7 +22,16 @@ class Player {
 public:
     Player(const char* name, const Weapon& weapon);
     ~Player();
+    void nextLevel();
+    bool isPlayer(const char* playerName)const;
+    void makeStep();
+    void addLife();
+    void addStrength(int strengthToAdd);
+    bool isAlive()const;
+    bool weaponIsWeak(int weaponMinStrength);
     friend ostream& operator<<(ostream& os, const Player& player);
+    friend bool operator<(const Player player2)const;
+    friend bool operator>(const Player player2)const;
 };
 
 
