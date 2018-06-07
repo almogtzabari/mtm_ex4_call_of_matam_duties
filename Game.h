@@ -21,7 +21,7 @@ enum GameStatus
 
 class Game {
     int max_players;
-    Player* player_array;
+    Player** player_array;
 public:
     Game(int maxPlayer);
     ~Game();
