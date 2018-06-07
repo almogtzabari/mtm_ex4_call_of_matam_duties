@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstring>
+using namespace std;
 
 enum Target
 {
@@ -26,7 +27,14 @@ public:
     Target getTarget() const;
     int getHitStrength() const;
     int getValue() const;
+    bool operator==(const Weapon& weapon) const;
+    bool operator!=(const Weapon& weapon) const;
+    bool operator>(const Weapon& weapon) const;
+    bool operator<(const Weapon& weapon) const;
+    friend ostream& operator<<(ostream& os, const Weapon& weapon);
 };
+
+
 
 
 #endif //MTM_EX4_CALL_OF_MATAM_DUTIES_WEAPON_H

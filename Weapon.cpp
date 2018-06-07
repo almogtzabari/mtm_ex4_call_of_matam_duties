@@ -31,3 +31,25 @@ int Weapon::getValue() const {
     }
     return 3*hitStrength;
 }
+
+bool Weapon::operator==(const Weapon& weapon) const {
+    return this->getValue()==weapon.getValue();
+}
+
+bool Weapon::operator!=(const Weapon& weapon) const {
+    return this->getValue()!=weapon.getValue();
+}
+
+bool Weapon::operator>(const Weapon &weapon) const {
+    return this->getValue()>weapon.getValue();
+}
+
+bool Weapon::operator<(const Weapon &weapon) const {
+    return this->getValue()<weapon.getValue();
+}
+
+ostream& operator<<(ostream& os, const Weapon& weapon){
+    return os<<"weapon name: "<<weapon.name<<" weapon value: "<<
+             weapon.getValue();
+}
+
