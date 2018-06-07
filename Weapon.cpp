@@ -10,13 +10,29 @@ Weapon::Weapon(const char* name, Target target, int hitStrength) :
     strcpy(this->name,name);
 }
 
-Weapon::Weapon(){
-    this->name=new char [strlen(name)+1];
+Weapon::Weapon() : name(nullptr){
 };
 
+Weapon& Weapon::operator=(const Weapon& weapon) {
+    if (this==&weapon){
+        return *this;
+    }
+    delete [] name;
+    name=new char [strlen(weapon.name)+1];
+    strcpy(name,weapon.name);
+    target=weapon.target;
+    hitStrength=weapon.hitStrength;
+    return *this;
+}
 
 Weapon::~Weapon() {
     delete[] name;
+}
+
+Weapon::Weapon(const Weapon& weapon) :
+        name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
+hitStrength(weapon.hitStrength){
+    strcpy(name,weapon.name);
 }
 
 Target Weapon::getTarget() const {
@@ -37,21 +53,21 @@ int Weapon::getValue() const {
     return 3*hitStrength;
 }
 
-bool Weapon::operator==(const Weapon& weapon1) const {
-    return this->getValue()==weapon1.getValue();
+bool Weapon::operator==(const Weapon& weapon) const {
+    return this->getValue()==weapon.getValue();
 }
 
 
-bool Weapon::operator!=(const Weapon& weapon1) const{
-    return this->getValue()!=weapon1.getValue();
+bool Weapon::operator!=(const Weapon& weapon) const{
+    return this->getValue()!=weapon.getValue();
 }
 
-bool Weapon::operator>(const Weapon& weapon1) const {
-    return this->getValue()>weapon1.getValue();
+bool Weapon::operator>(const Weapon& weapon) const {
+    return this->getValue()>weapon.getValue();
 }
 
-bool Weapon::operator<(const Weapon& weapon1) const {
-    return this->getValue()<weapon1.getValue();
+bool Weapon::operator<(const Weapon& weapon) const {
+    return this->getValue()<weapon.getValue();
 }
 
 ostream& operator<<(ostream& os, const Weapon& weapon){

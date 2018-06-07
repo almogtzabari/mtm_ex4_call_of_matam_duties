@@ -49,7 +49,6 @@ Player& Player::operator=(const Player &player) {
     position = player.position;
     weapon = player.weapon;
 
-
 }
 
 ostream& operator<<(ostream& os, const Player& player){
