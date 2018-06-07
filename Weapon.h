@@ -23,6 +23,7 @@ Target target;
 int hitStrength;
 public:
     Weapon(const char* name,Target target,int hitStrength);
+    Weapon();
     ~Weapon();
     Target getTarget() const;
     int getHitStrength() const;

@@ -10,6 +10,11 @@ Weapon::Weapon(const char* name, Target target, int hitStrength) :
     strcpy(this->name,name);
 }
 
+Weapon::Weapon(){
+    this->name=new char [strlen(name)+1];
+};
+
+
 Weapon::~Weapon() {
     delete[] name;
 }
