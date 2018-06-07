@@ -3,3 +3,21 @@
 //
 
 #include "Player.h"
+
+
+/**
+ ***** Constructor *****
+ */
+Player::Player(const char∗ name, const Weapon& weapon) : name(nullptr),
+weapon(weapon),life(1),strength(1),level(1),position(0){
+    char* temp_name = new char [strlen(name)+1];
+    strcpy(temp_name,name);
+}
+
+/**
+ ***** Destructor *****
+ */
+Player::~Player() {
+    delete[] name;
+
+}
