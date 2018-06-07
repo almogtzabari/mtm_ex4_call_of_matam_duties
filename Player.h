@@ -28,10 +28,10 @@ public:
     void addLife();
     void addStrength(int strengthToAdd);
     bool isAlive()const;
-    bool weaponIsWeak(int weaponMinStrength);
+    bool weaponIsWeak(int weaponMinStrength)const;
     friend ostream& operator<<(ostream& os, const Player& player);
-    friend bool operator<(const Player player2)const;
-    friend bool operator>(const Player player2)const;
+    friend bool operator<(const Player& player1,const Player& player2);
+    friend bool operator>(const Player& player1,const Player& player2);
 };
 
 

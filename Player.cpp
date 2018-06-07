@@ -54,14 +54,14 @@ bool Player::isAlive() const {
     return true;
 }
 
-bool Player::weaponIsWeak(int weaponMinStrength) {
+bool Player::weaponIsWeak(int weaponMinStrength)const {
     return (weapon.getValue()<weaponMinStrength);
 }
 
-bool Player::operator<(const Player player2) const {
-    return (strcmp(this->name,player2.name)<0);
+bool Player::operator<(const Player& player1,const Player& player2){
+    return (strcmp(player1.name,player2.name)<0);
 }
 
-bool Player::operator>(const Player player2) const {
-    return (strcmp(this->name,player2.name)>0);
+bool Player::operator>(const Player& player1,const Player& player2) {
+    return (strcmp(player1.name,player2.name)>0);
 }
