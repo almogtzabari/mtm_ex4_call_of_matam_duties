@@ -27,10 +27,14 @@ public:
     Target getTarget() const;
     int getHitStrength() const;
     int getValue() const;
-    bool operator==(const Weapon& weapon) const;
-    bool operator!=(const Weapon& weapon) const;
-    bool operator>(const Weapon& weapon) const;
-    bool operator<(const Weapon& weapon) const;
+    friend bool operator==(const Weapon& weapon,
+                           const Weapon& weapon2) const;
+    friend bool operator!=(const Weapon& weapon,
+                           const Weapon& weapon2) const;
+    friend bool operator>(const Weapon& weapon,
+                           const Weapon& weapon2) const;
+    friend bool operator<(const Weapon& weapon,
+                           const Weapon& weapon2) const;
     friend ostream& operator<<(ostream& os, const Weapon& weapon);
 };
 
