@@ -27,9 +27,8 @@ public:
     ~Game();
     GameStatus addPlayer(const char* playerName,const char* weaponName,
     Target target,int hit_strenth);
+    GameStatus nextLevel(const char* playerName);
 };
-
-
 
 
 

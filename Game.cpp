@@ -21,7 +21,7 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
     for (int i = 0; i < max_players; i++) {
         if(player_array[i]== nullptr){
             Weapon weapon=Weapon(weaponName,target,hit_strenth);
-            Player new_player=Player(playerName,weapon);
+            *player_array[i]=Player(playerName,weapon);
             return SUCCESS;
         }
         if (player_array[i]->isPlayer(playerName)) {
@@ -29,4 +29,8 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
         }
     }
     return GAME_FULL;
+}
+
+GameStatus Game::nextLevel(const char *playerName) {
+    
 }
