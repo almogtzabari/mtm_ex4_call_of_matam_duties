@@ -6,6 +6,7 @@
 #define MTM_EX4_CALL_OF_MATAM_DUTIES_PLAYER_H
 
 #include "Weapon.h"
+#include <iostream>
 #include <cstring>
 
 
@@ -18,8 +19,9 @@ class Player {
     int position;
 
 public:
-    Player(const char∗ name, const Weapon& weapon);
+    Player(const char* name, const Weapon& weapon);
     ~Player();
+    friend ostream& operator<<(ostream& os, const Complex& c);
 };
 
 
