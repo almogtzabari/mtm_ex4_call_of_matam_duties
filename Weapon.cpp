@@ -32,19 +32,19 @@ int Weapon::getValue() const {
     return 3*hitStrength;
 }
 
-friend bool operator==(const Weapon& weapon1,const Weapon& weapon2) {
+bool operator==(const Weapon& weapon1,const Weapon& weapon2) {
     return weapon1.getValue()==weapon2.getValue();
 }
 
-friend bool operator!=(const Weapon& weapon1,const Weapon& weapon2){
+bool operator!=(const Weapon& weapon1,const Weapon& weapon2){
     return weapon1.getValue()!=weapon2.getValue();
 }
 
-friend bool operator>(const Weapon& weapon1,const Weapon& weapon2) {
+bool operator>(const Weapon& weapon1,const Weapon& weapon2) {
     return weapon1.getValue()>weapon2.getValue();
 }
 
-friend bool operator<(const Weapon& weapon1,const Weapon& weapon2) {
+bool operator<(const Weapon& weapon1,const Weapon& weapon2) {
     return weapon1.getValue()<weapon2.getValue();
 }
 
