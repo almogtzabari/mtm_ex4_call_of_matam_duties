@@ -25,13 +25,15 @@ public:
     Weapon(const char* name,Target target,int hitStrength);
     Weapon();
     ~Weapon();
+    Weapon(const Weapon& weapon);
     Target getTarget() const;
     int getHitStrength() const;
     int getValue() const;
-    bool operator==(const Weapon& weapon1) const;
-    bool operator!=(const Weapon& weapon1) const;
-    bool operator<(const Weapon& weapon1) const;
-    bool operator>(const Weapon& weapon1) const;
+    bool operator==(const Weapon& weapon) const;
+    bool operator!=(const Weapon& weapon) const;
+    bool operator<(const Weapon& weapon) const;
+    bool operator>(const Weapon& weapon) const;
+    Weapon& operator=(const Weapon& weapon);
     friend ostream& operator<<(ostream& os, const Weapon& weapon);
 };
 
