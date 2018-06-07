@@ -1,0 +1,12 @@
+
+*.xml
+*.cmake
+*.iml
+*.bin
+*.exe
+*.cxx
+*.internal
+*.make
+*.marks
+*.o
+*.includecache
