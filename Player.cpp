@@ -22,3 +22,6 @@ Player::~Player() {
     delete[] name;
 }
 
+ostream& operator<<(ostream& os, const Player& player){
+    
+}

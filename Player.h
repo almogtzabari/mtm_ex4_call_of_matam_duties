@@ -8,6 +8,7 @@
 #include "Weapon.h"
 #include <iostream>
 #include <cstring>
+using namespace std;
 
 
 class Player {
@@ -21,7 +22,7 @@ class Player {
 public:
     Player(const char* name, const Weapon& weapon);
     ~Player();
-    friend ostream& operator<<(ostream& os, const Complex& c);
+    friend ostream& operator<<(ostream& os, const Player& player);
 };
 
 
