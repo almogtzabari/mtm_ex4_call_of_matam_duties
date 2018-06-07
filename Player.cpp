@@ -5,9 +5,6 @@
 #include "Player.h"
 
 
-Player::Player() {
-    
-}
 /**
  ***** Constructor *****
  */
@@ -71,7 +68,10 @@ bool operator>(const Player& player1,const Player& player2){
 }
 
 bool Player::fight(Player &player) {
-    if(position!=player.position || weapon.getValue() == player.weapon.getValue()){
-
+    if(position!=player.position ||
+       weapon.getValue() == player.weapon.getValue()){
+        return false;
     }
+
+    return true;
 }
