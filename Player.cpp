@@ -40,6 +40,9 @@ Player::~Player() {
 }
 
 Player& Player::operator=(const Player &player) {
+    if(this==&player){
+        return *this;
+    }
     delete[] name;
     name = new char[strlen(player.name)+1];
     strcpy(name,player.name);
@@ -98,8 +101,38 @@ bool operator>(const Player& player1,const Player& player2){
 bool Player::fight(Player &player) {
     if(position!=player.position ||
        weapon.getValue() == player.weapon.getValue()){
+        /* Not in the same position or has same weapon value, therefore
+         * shouldn't fight .*/
         return false;
     }
-
+    Player attacker,defender;
+    if(weapon>player.weapon){
+        attacker = *this;
+        defender = player;
+    }
+    else {
+        attacker = player;
+        defender = *this;
+    }
+    switch(attacker.weapon.getTarget()) {
+        case LEVEL :
+            defender.level -= attacker.weapon.getValue();
+            if (defender.level < 0) {
+                defender.level = 0;
+            }
+            break;
+        case LIFE :
+            defender.life -= attacker.weapon.getValue();
+            if (defender.life < 0) {
+                defender.life = 0;
+            }
+            break;
+        case STRENGTH :
+            defender.strength -= attacker.weapon.getValue();
+            if (defender.strength < 0) {
+                defender.strength = 0;
+            }
+            break;
+    }
     return true;
 }
