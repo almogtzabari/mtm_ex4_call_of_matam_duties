@@ -33,8 +33,10 @@ public:
     GameStatus addStrength(const char* playerName, int strengthToAdd);
     bool removeAllPlayersWithWeakWeapon (int weaponStrength);
     GameStatus fight(const char* playerName1, const char* playerName2);
-    ostream& operator<<(ostream& os);
+    ostream& operator<<(ostream& os, const Game& game);
 };
+
+static void sortPlayerNames(char** players_names);
 
 
 

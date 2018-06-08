@@ -5,7 +5,7 @@
 #include "Weapon.h"
 #include <iostream>
 #include <cstring>
-using namespace std;
+using std::ostream;
 
 
 class Player {
@@ -30,12 +30,12 @@ public:
     bool isAlive()const;
     bool weaponIsWeak(int weaponMinStrength)const;
     bool fight(Player& player);
+    char* getName()const;
     friend ostream& operator<<(ostream& os, const Player& player);
     friend bool operator<(const Player& player1,const Player& player2);
     friend bool operator>(const Player& player1,const Player& player2);
 
 };
-
 
 
 #endif //MTM_EX4_CALL_OF_MATAM_DUTIES_PLAYER_H

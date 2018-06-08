@@ -116,3 +116,16 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     return SUCCESS;
 }
 
+static void sortPlayerNames(char** players_names){
+    
+}
+
+ostream& Game::operator<<(ostream & os,const Game &game){
+    char** names = new char* [max_players];
+    for(int i=0;i<max_players;i++){
+        names[i] = player_array[i]->getName();
+    }
+
+
+
+}

@@ -239,3 +239,7 @@ bool Player::fight(Player &player) {
     }
     return true;
 }
+
+char* Player::getName() const {
+    return name;
+}
