@@ -21,8 +21,10 @@ enum GameStatus
 
 class Game {
     int max_players;
+    int number_of_players;
     Player** player_array;
-
+    bool isFull()const;
+    bool playerExist(const char* player_name)const;
 public:
     Game(int maxPlayer);
     ~Game();

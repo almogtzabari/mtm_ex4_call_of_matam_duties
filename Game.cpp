@@ -6,40 +6,29 @@
 #include "Player.h"
 using std::ostream;
 
-Game::Game(int maxPlayer) : max_players(maxPlayer),
+Game::Game(int maxPlayer) : max_players(maxPlayer), number_of_players(0),
                             player_array( new Player* [maxPlayer]){
-    for (int i=0;i<maxPlayer;i++) {
-        player_array[i]= nullptr;
-    }
 }
 
 Game::~Game() {
-    for (int i=0;i <max_players;i++) {
-        if(player_array[i]) {
-            delete player_array[i];
-        }
-    }
     delete[] player_array;
 }
 
 GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
                            Target target, int hit_strength) {
-    for (int i = 0; i < max_players; i++) {
-        if(player_array[i]== nullptr){
-            Weapon* weapon = new Weapon(weaponName,target,hit_strength);
-            Player* player = new Player(playerName,*weapon);
-            player_array[i] = player;
-            return SUCCESS;
-        }
-        if (player_array[i]->isPlayer(playerName)) {
-            return NAME_ALREADY_EXISTS;
-        }
+    if(isFull()){
+        return GAME_FULL;
     }
-    return GAME_FULL;
+    if(playerExist(playerName)){
+        return NAME_ALREADY_EXISTS;
+    }
+    Weapon weapon = Weapon(weaponName,target,hit_strength);
+    *player_array[number_of_players++] = Player(playerName,weapon);
+    return SUCCESS;
 }
 
 GameStatus Game::nextLevel(const char *playerName) {
-    for (int i=0;i<max_players;i++) {
+    for (int i=0;i<number_of_players;i++) {
         if(player_array[i]->isPlayer(playerName)){
             player_array[i]->nextLevel();
             return SUCCESS;
@@ -49,13 +38,10 @@ GameStatus Game::nextLevel(const char *playerName) {
 }
 
 GameStatus Game::makeStep(const char *playerName) {
-    for (int i=0;i<max_players;i++) {
-        if(player_array[i]){
-            if(player_array[i]->isPlayer(playerName)) {
-                player_array[i]->makeStep();
-                return SUCCESS;
-            }
-
+    for (int i=0;i<number_of_players;i++) {
+        if(player_array[i]->isPlayer(playerName)) {
+            player_array[i]->makeStep();
+            return SUCCESS;
         }
     }
     return NAME_DOES_NOT_EXIST;
@@ -158,14 +144,14 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
 
 
 ostream& operator<<(ostream& os,Game& game){
-    /* Counting players in game: */
+    /* Counting number_of_players in game: */
     int players_in_game=0;
     for(int i=0;i<game.max_players;i++){
         if(game.player_array[i]){
             players_in_game++;
         }
     }
-    /* Sorting players: */
+    /* Sorting number_of_players: */
     Player* temp;
     for (int i = 0; i < players_in_game; i++) {
         for (int j = 0; j < players_in_game - i - 1; j++) {
@@ -180,4 +166,17 @@ ostream& operator<<(ostream& os,Game& game){
         os << "Player "<<i<<": "<< *game.player_array[i]<<","<< std::endl;
     }
     return os;
+}
+
+bool Game::isFull() const {
+    return number_of_players == max_players;
+}
+
+bool Game::playerExist(const char *player_name) const {
+    for(int i=0; i<number_of_players;i++){
+        if(player_array[i]->isPlayer(player_name)){
+            return true;
+        }
+    }
+    return false;
 }
