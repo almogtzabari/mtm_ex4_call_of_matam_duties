@@ -29,3 +29,5 @@ cmake-build-debug/CMakeFiles/Progress/2
 cmake-build-debug/CMakeFiles/Progress/3
 cmake-build-debug/CMakeFiles/Progress/4
 cmake-build-debug/CMakeFiles/Progress/5
+*.stackdump
+cmake-build-debug/TestOutPut
