@@ -142,10 +142,10 @@ void Game::sortPlayers(Game& game) {
     }
 }
 
-ostream& Game::operator<<(ostream& os, Game &game){
+ostream& Game::operator<<(ostream& os, Game& game){
     sortPlayers(game);
     for(int i=0;i<game.playersInGame();i++){
-        os << *player_array[i] << endl;
+        os << "Player "<<i<<":"<< *game.player_array[i] << endl;
     }
     return os;
 
