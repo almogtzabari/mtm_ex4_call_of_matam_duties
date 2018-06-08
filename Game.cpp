@@ -158,7 +158,7 @@ ostream& operator<<(ostream& os,Game& game){
         }
     }
     for(int i=0;i<players_in_game;i++){
-        os << "Player "<<i<<":"<< *game.player_array[i] << std::endl;
+        os << "Player "<<i<<": "<< *game.player_array[i] << std::endl;
     }
     return os;
 }
