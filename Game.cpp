@@ -32,7 +32,7 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
             return SUCCESS;
         }
         if (player_array[i]->isPlayer(playerName)) {
-            return NAME_ALREADY_EXSISTS;
+            return NAME_ALREADY_EXISTS;
         }
     }
     return GAME_FULL;
