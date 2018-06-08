@@ -8,6 +8,9 @@ using std::ostream;
 
 Game::Game(int maxPlayer) : max_players(maxPlayer), number_of_players(0),
                             player_array( new Player* [maxPlayer]){
+    for(int i=0;i<max_players;i++){
+        player_array[i] = new Player();
+    }
 }
 
 Game::~Game() {
