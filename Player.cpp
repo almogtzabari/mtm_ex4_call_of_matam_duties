@@ -4,7 +4,8 @@
 /**
  * Default constructor
  */
-Player::Player(): name(nullptr), weapon(),life(1),strength(1),level(1),position(0) {
+Player::Player(): name(nullptr),level(1),life(1),
+                  strength(1),weapon(),position(0) {
 }
 
 /**
