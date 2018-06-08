@@ -50,9 +50,12 @@ GameStatus Game::nextLevel(const char *playerName) {
 
 GameStatus Game::makeStep(const char *playerName) {
     for (int i=0;i<max_players;i++) {
-        if(player_array[i]->isPlayer(playerName)){
-            player_array[i]->makeStep();
-            return SUCCESS;
+        if(player_array[i]){
+            if(player_array[i]->isPlayer(playerName)) {
+                player_array[i]->makeStep();
+                return SUCCESS;
+            }
+
         }
     }
     return NAME_DOES_NOT_EXIST;
@@ -60,9 +63,11 @@ GameStatus Game::makeStep(const char *playerName) {
 
 GameStatus Game::addLife(const char *playerName) {
     for (int i=0;i<max_players;i++) {
-        if(player_array[i]->isPlayer(playerName)){
-            player_array[i]->addLife();
-            return SUCCESS;
+        if (player_array[i]) {
+            if (player_array[i]->isPlayer(playerName)) {
+                player_array[i]->addLife();
+                return SUCCESS;
+            }
         }
     }
     return NAME_DOES_NOT_EXIST;
@@ -73,9 +78,11 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
         return INVALID_PARAM;
     }
     for (int i=0;i<max_players;i++) {
-        if(player_array[i]->isPlayer(playerName)){
-            player_array[i]->addStrength(strengthToAdd);
-            return SUCCESS;
+        if(player_array[i]) {
+            if (player_array[i]->isPlayer(playerName)) {
+                player_array[i]->addStrength(strengthToAdd);
+                return SUCCESS;
+            }
         }
     }
     return NAME_DOES_NOT_EXIST;
@@ -87,6 +94,13 @@ bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
         if(player_array[i]) {
             if (player_array[i]->weaponIsWeak(weaponStrength)) {
                 delete player_array[i];
+                for (int j=max_players-1;j>=0 ;j++) {
+                    if(player_array[j]){
+                        player_array[i]=player_array[j];
+                        player_array[j]= nullptr;
+                        break;
+                    }
+                }
                 removed = true;
             }
         }
