@@ -73,6 +73,7 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
             return SUCCESS;
         }
     }
+    return NAME_DOES_NOT_EXIST;
 }
 
 bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
@@ -89,9 +90,7 @@ bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
 GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     int player1_index=0, player2_index=0;
     bool found1=false, found2= false;
-    for (int i=0;i<max_players;i++) {
-        if(player_array[i]){
-            /*  Player is not nullptr. */
+    for (int i=0;i<number_of_players;i++) {
             if(player_array[i]->isPlayer(playerName1)){
                 player1_index=i;
                 found1=true;
@@ -100,7 +99,6 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
                 player2_index=i;
                 found2=true;
             }
-        }
     }
     if(!found1 || !found2){
         return NAME_DOES_NOT_EXIST;
@@ -109,24 +107,12 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
         return FIGHT_FAILED;
     }
     if(!player_array[player1_index]->isAlive()){
-        delete player_array[player1_index];
-        for (int i=max_players-1;i>=0 ;i--) {
-            if(player_array[i]){
-                player_array[player1_index]=player_array[i];
-                player_array[i]= nullptr;
+        removePlayer(*player_array[player1_index]);
                 return SUCCESS;
-            }
-        }
     }
     if(!player_array[player2_index]->isAlive()){
-        delete player_array[player2_index];
-        for (int i=max_players-1;i>=0 ;i--) {
-            if(player_array[i]){
-                player_array[player2_index]=player_array[i];
-                player_array[i]= nullptr;
+        removePlayer(*player_array[player2_index]);
                 return SUCCESS;
-            }
-        }
     }
     return SUCCESS;
 }
@@ -168,6 +154,7 @@ void Game::removePlayer(const Player& player){
         if(player==*player_array[i]){
             *player_array[number_of_players--]=player;
             *player_array[i]=*player_array[number_of_players];
+            break;
         }
     }
 }
