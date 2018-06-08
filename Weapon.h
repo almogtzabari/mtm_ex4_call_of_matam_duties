@@ -34,7 +34,7 @@ public:
     bool operator<(const Weapon& weapon) const;
     bool operator>(const Weapon& weapon) const;
     Weapon& operator=(const Weapon& weapon);
-    ostream& operator<<(ostream& os);
+    friend ostream& operator<<(ostream& os, const Weapon& weapon);
 };
 
 

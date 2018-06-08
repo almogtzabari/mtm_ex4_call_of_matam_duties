@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Weapon.h"
-using std::ostream
+
+using std::cout;
 
 
 int main() {
