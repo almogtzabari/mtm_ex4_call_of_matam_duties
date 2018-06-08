@@ -151,7 +151,7 @@ ostream& operator<<(ostream& os,Game& game){
             if(*game.player_array[j]>*game.player_array[j+1]){
                 temp = game.player_array[j];
                 game.player_array[j] = game.player_array[j+1];
-                game.player_array[j] = temp;
+                game.player_array[j+1] = temp;
             }
         }
     }
