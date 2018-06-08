@@ -113,7 +113,7 @@ bool Weapon::operator<(const Weapon& weapon) const {
 }
 
 ostream& operator<<(ostream& os, const Weapon& weapon){
-    return os<<"{weapon name: "<<weapon.name<<" weapon value: "<<
+    return os<<"{weapon name: "<<weapon.name<< ","<<" weapon value:"<<
              weapon.getValue()<<"}";
 }
 

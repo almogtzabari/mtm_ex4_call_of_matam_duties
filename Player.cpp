@@ -79,7 +79,7 @@ Player& Player::operator=(const Player &player) {
  * Stream of Player details.
  */
 ostream& operator<<(ostream& os, const Player& player){
-    return os << "{Player name:" << player.name << "weapon:" <<
+    return os << "{Player name: " << player.name << "," <<" weapon: " <<
               player.weapon << "}";
 }
 
