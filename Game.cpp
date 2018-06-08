@@ -14,14 +14,19 @@ Game::Game(int maxPlayer) : max_players(maxPlayer),
 }
 
 Game::~Game() {
+    for (int i=0;i <max_players;i++) {
+        if(player_array[i]) {
+            delete player_array[i];
+        }
+    }
     delete[] player_array;
 }
 
 GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
-                           Target target, int hit_strenth) {
+                           Target target, int hit_strength) {
     for (int i = 0; i < max_players; i++) {
         if(player_array[i]== nullptr){
-            Weapon* weapon = new Weapon(weaponName,target,hit_strenth);
+            Weapon* weapon = new Weapon(weaponName,target,hit_strength);
             Player* player = new Player(playerName,*weapon);
             player_array[i] = player;
             return SUCCESS;
@@ -111,9 +116,11 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     }
     if(!player_array[player1_index]->isAlive()){
         delete player_array[player1_index];
+        player_array[player1_index]= nullptr;
     }
     if(!player_array[player2_index]->isAlive()){
         delete player_array[player2_index];
+        player_array[player2_index]= nullptr;
     }
     return SUCCESS;
 }
