@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "Player.h"
+using std::ostream;
 
 Game::Game(int maxPlayer) : max_players(maxPlayer),
                             player_array( new Player* [maxPlayer]){
@@ -130,7 +131,7 @@ int Game::playersInGame() const {
 void Game::sortPlayers(Game& game) {
     int players_in_game = game.playersInGame();
     Player* temp;
-    for (int i = 0; i < players_in_game-1; i++) {
+    for (int i = 0; i < players_in_game; i++) {
         for (int j = 0; j < players_in_game - i - 1; j++) {
             if(*player_array[j]>*player_array[j+1]){
                 temp = player_array[j];
@@ -141,10 +142,10 @@ void Game::sortPlayers(Game& game) {
     }
 }
 
-ostream& Game::operator<<(ostream& os,const Game &game){
+ostream& Game::operator<<(ostream& os, Game &game){
     sortPlayers(game);
     for(int i=0;i<game.playersInGame();i++){
-        os << *player_array[i];
+        os << *player_array[i] << endl;
     }
     return os;
 
