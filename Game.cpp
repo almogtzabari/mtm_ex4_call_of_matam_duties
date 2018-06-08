@@ -116,7 +116,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     }
     if(!player_array[player1_index]->isAlive()){
         delete player_array[player1_index];
-        for (int i=max_players;i>0 ;i--) {
+        for (int i=max_players-1;i>=0 ;i--) {
             if(player_array[i]){
                 player_array[player1_index]=player_array[i];
                 player_array[i]= nullptr;
@@ -125,7 +125,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     }
     if(!player_array[player2_index]->isAlive()){
         delete player_array[player2_index];
-        for (int i=max_players;i>0 ;i--) {
+        for (int i=max_players-1;i>=0 ;i--) {
             if(player_array[i]){
                 player_array[player2_index]=player_array[i];
                 player_array[i]= nullptr;
