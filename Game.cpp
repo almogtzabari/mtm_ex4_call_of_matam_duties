@@ -84,9 +84,11 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
 bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
     bool removed=false;
     for (int i=0;i<max_players;i++) {
-        if(player_array[i]->weaponIsWeak(weaponStrength)){
-            delete player_array[i];
-            removed= true;
+        if(player_array[i]) {
+            if (player_array[i]->weaponIsWeak(weaponStrength)) {
+                delete player_array[i];
+                removed = true;
+            }
         }
     }
     if(removed){
