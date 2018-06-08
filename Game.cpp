@@ -139,6 +139,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
             if(player_array[i]){
                 player_array[player1_index]=player_array[i];
                 player_array[i]= nullptr;
+                break;
             }
         }
     }
@@ -148,6 +149,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
             if(player_array[i]){
                 player_array[player2_index]=player_array[i];
                 player_array[i]= nullptr;
+                break;
             }
         }
     }
