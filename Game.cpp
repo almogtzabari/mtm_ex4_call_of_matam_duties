@@ -116,3 +116,6 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     return SUCCESS;
 }
 
+ostream& Game::operator<<(ostream &os, const Game &game) {
+    return os<<
+}

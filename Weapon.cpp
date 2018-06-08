@@ -30,6 +30,7 @@ Weapon::~Weapon() {
 }
 
 
+
 Target Weapon::getTarget() const {
     return target;
 }
@@ -65,9 +66,9 @@ bool Weapon::operator<(const Weapon& weapon) const {
     return this->getValue()<weapon.getValue();
 }
 
-ostream& operator<<(ostream& os, const Weapon& weapon){
-    return os<<"weapon name: "<<weapon.name<<" weapon value: "<<
-             weapon.getValue();
+ostream& Weapon::operator<<(ostream &os) {
+    return os<<"{weapon name: "<<this->name<<" weapon value: "<<
+             this->getValue()<<"}";
 }
 
 Weapon::Weapon(const Weapon& weapon) :
