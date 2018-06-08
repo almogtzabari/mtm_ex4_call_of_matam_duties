@@ -239,3 +239,7 @@ void Player::attack(Player &defender) const {
             return;
     }
 }
+
+bool operator==(const Player& player1, const Player& player2){
+    return player1.isPlayer(player2.name);
+}
