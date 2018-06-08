@@ -3,6 +3,7 @@
 
 /**
  * Constructor
+ *
  * @param name - Weapon name.
  * @param target - Enum which represents the target of the weapon.
  * @param hitStrength - Strength of the weapon.
@@ -12,6 +13,7 @@ Weapon::Weapon(const char* name, Target target, int hitStrength) :
     this->name=new char [strlen(name)+1];
     strcpy(this->name,name);
 }
+
 /**
  * Default constructor
  */
@@ -19,8 +21,15 @@ Weapon::Weapon() : name(nullptr){
 }
 
 /**
+ * Destructor
+ */
+Weapon::~Weapon() {
+    delete[] name;
+}
+
+/**
  * Operator=
- * @param weapon - A weapon to assign.
+ * @param weapon - Weapon to assign.
  *
  * @return
  * A reference to new assigned weapon.
@@ -30,29 +39,25 @@ Weapon& Weapon::operator=(const Weapon& weapon) {
         return *this;
     }
     delete [] name;
-    name=new char [strlen(weapon.name)+1];
+    name = new char [strlen(weapon.name)+1];
     strcpy(name,weapon.name);
-    target=weapon.target;
-    hitStrength=weapon.hitStrength;
+    target = weapon.target;
+    hitStrength = weapon.hitStrength;
     return *this;
-}
-/**
- * Destructor
- */
-Weapon::~Weapon() {
-    delete[] name;
 }
 
 /**
  * getTarget
+ *
  * @return
- * The target of the weapon.
+ * Target of the weapon.
  */
 Target Weapon::getTarget() const {
     return target;
 }
 /**
  * getHitStrength
+ *
  * @return
  * Hit strength of the weapon.
  */
@@ -62,6 +67,7 @@ int Weapon::getHitStrength() const {
 
 /**
  * getValue
+ *
  * @return
  * Gets the value of the weapon.
  */
@@ -77,9 +83,12 @@ int Weapon::getValue() const {
 
 /**
  * Operator==
+ *
  * @param weapon - A weapon to compare.
+ *
  * @return
- * True if both weapons has the same value, else false.
+ * True -Both weapons has the same value.
+ * False - Otherwise.
  */
 bool Weapon::operator==(const Weapon& weapon) const {
     return this->getValue()==weapon.getValue();
@@ -87,9 +96,12 @@ bool Weapon::operator==(const Weapon& weapon) const {
 
 /**
  * Operator!=
- * @param weapon - A weapon to compare.
+ *
+ * @param weapon - Weapon to compare.
+ *
  * @return
- * True if the weapons has different values, else false.
+ * True - Weapons has different values.
+ * False - Otherwise.
  */
 bool Weapon::operator!=(const Weapon& weapon) const{
     return this->getValue()!=weapon.getValue();
@@ -97,9 +109,12 @@ bool Weapon::operator!=(const Weapon& weapon) const{
 
 /**
  * Operator>
- * @param weapon - A weapon to compare.
+ *
+ * @param weapon - Weapon to compare.
+ *
  * @return
- * True if the given weapon has smaller value than the
+ * True - Given weapon has smaller value than *this.
+ * False - Otherwise.
  */
 bool Weapon::operator>(const Weapon& weapon) const {
     return this->getValue()>weapon.getValue();
