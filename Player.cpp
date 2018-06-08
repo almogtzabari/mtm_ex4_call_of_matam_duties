@@ -219,19 +219,19 @@ bool Player::fight(Player &player) {
     }
     switch(attacker.weapon.getTarget()) {
         case LEVEL :
-            defender.level -= attacker.weapon.getValue();
+            defender.level -= attacker.weapon.getHitStrength();
             if (defender.level < 0) {
                 defender.level = 0;
             }
             break;
         case LIFE :
-            defender.life -= attacker.weapon.getValue();
+            defender.life -= attacker.weapon.getHitStrength();
             if (defender.life < 0) {
                 defender.life = 0;
             }
             break;
         case STRENGTH :
-            defender.strength -= attacker.weapon.getValue();
+            defender.strength -= attacker.weapon.getHitStrength();
             if (defender.strength < 0) {
                 defender.strength = 0;
             }
