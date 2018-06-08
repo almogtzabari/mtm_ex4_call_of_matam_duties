@@ -142,9 +142,8 @@ bool Game::playerExist(const char *player_name) const {
 
 void Game::removePlayer(const Player& player){
     for (int i=0;i<number_of_players;i++) {
-        if(player==*player_array[i]){
-            *player_array[number_of_players--]=player;
-            *player_array[i]=*player_array[number_of_players];
+        if(player == *player_array[i]){
+            *player_array[i] = *player_array[--number_of_players];
             break;
         }
     }
