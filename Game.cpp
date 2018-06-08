@@ -14,6 +14,9 @@ Game::Game(int maxPlayer) : max_players(maxPlayer), number_of_players(0),
 }
 
 Game::~Game() {
+    for (int i=0;i<number_of_players;i++) {
+        delete player_array[i];
+    }
     delete[] player_array;
 }
 
