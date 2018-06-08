@@ -5,7 +5,6 @@
  * Default constructor
  */
 Player::Player(): name(nullptr), weapon(),life(1),strength(1),level(1),position(0) {
-
 }
 
 /**
@@ -14,8 +13,8 @@ Player::Player(): name(nullptr), weapon(),life(1),strength(1),level(1),position(
  * @param player - Player we want to copy.
  */
 Player::Player(const Player& player):
-        name(new char[strlen(player.name)+1]),weapon(player.weapon),
-life(player.life),strength(player.strength),level(player.level),
+        name(new char[strlen(player.name)+1]),level(player.level),
+        life(player.life),strength(player.strength),weapon(player.weapon),
         position(player.position){
     strcpy(name,player.name);
 }
@@ -27,7 +26,7 @@ life(player.life),strength(player.strength),level(player.level),
  * @param weapon - Weapon of the player.
  */
 Player::Player(const char* name, const Weapon& weapon): name(nullptr),
-weapon(weapon),life(1),strength(1),level(1),position(0){
+level(1),life(1),strength(1),weapon(weapon),position(0){
     char* temp_name = new char [strlen(name)+1];
     strcpy(temp_name,name);
     this->name = temp_name;
