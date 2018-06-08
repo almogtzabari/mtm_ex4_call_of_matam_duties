@@ -30,7 +30,6 @@ public:
     bool isAlive()const;
     bool weaponIsWeak(int weaponMinStrength)const;
     bool fight(Player& player);
-    char* getName()const;
     friend ostream& operator<<(ostream& os, const Player& player);
     friend bool operator<(const Player& player1,const Player& player2);
     friend bool operator>(const Player& player1,const Player& player2);

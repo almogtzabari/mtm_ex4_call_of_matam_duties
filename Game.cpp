@@ -118,33 +118,27 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     return SUCCESS;
 }
 
-int Game::playersInGame() const {
-    int count=0;
-    for(int i=0;i<max_players;i++){
-        if(player_array[i]){
-            count++;
+
+ostream& Game::operator<<(ostream& os, Game& game){
+    /* Counting players in game: */
+    int players_in_game=0;
+    for(int i=0;i<game.max_players;i++){
+        if(game.player_array[i]){
+            players_in_game++;
         }
     }
-    return count;
-}
-
-void Game::sortPlayers(Game& game) {
-    int players_in_game = game.playersInGame();
+    /* Sorting players: */
     Player* temp;
     for (int i = 0; i < players_in_game; i++) {
         for (int j = 0; j < players_in_game - i - 1; j++) {
-            if(*player_array[j]>*player_array[j+1]){
-                temp = player_array[j];
-                player_array[j+1] = player_array[j];
-                player_array[j] = temp;
+            if(*game.player_array[j]>*game.player_array[j+1]){
+                temp = game.player_array[j];
+                game.player_array[j+1] = game.player_array[j];
+                game.player_array[j] = temp;
             }
         }
     }
-}
-
-ostream& Game::operator<<(ostream& os, Game& game){
-    sortPlayers(game);
-    for(int i=0;i<game.playersInGame();i++){
+    for(int i=0;i<players_in_game;i++){
         os << "Player "<<i<<":"<< *game.player_array[i] << std::endl;
     }
     return os;
