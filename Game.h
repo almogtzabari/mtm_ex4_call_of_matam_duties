@@ -22,6 +22,7 @@ enum GameStatus
 class Game {
     int max_players;
     Player** player_array;
+    int playersInGame()const;
 public:
     Game(int maxPlayer);
     ~Game();
@@ -34,9 +35,9 @@ public:
     bool removeAllPlayersWithWeakWeapon (int weaponStrength);
     GameStatus fight(const char* playerName1, const char* playerName2);
     ostream& operator<<(ostream& os, const Game& game);
+    void sortPlayers(Game& game);
 };
 
-static void sortPlayerNames(char** players_names);
 
 
 

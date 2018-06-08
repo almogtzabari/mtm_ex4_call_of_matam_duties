@@ -20,8 +20,9 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
                            Target target, int hit_strenth) {
     for (int i = 0; i < max_players; i++) {
         if(player_array[i]== nullptr){
-            Weapon weapon=Weapon(weaponName,target,hit_strenth);
-            *player_array[i]=Player(playerName,weapon);
+            Weapon* weapon = new Weapon(weaponName,target,hit_strenth);
+            Player* player = new Player(playerName,*weapon);
+            player_array[i] = player;
             return SUCCESS;
         }
         if (player_array[i]->isPlayer(playerName)) {
@@ -116,16 +117,35 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     return SUCCESS;
 }
 
-static void sortPlayerNames(char** players_names){
-    
+int Game::playersInGame() const {
+    int count=0;
+    for(int i=0;i<max_players;i++){
+        if(player_array[i]){
+            count++;
+        }
+    }
+    return count;
 }
 
-ostream& Game::operator<<(ostream & os,const Game &game){
-    char** names = new char* [max_players];
-    for(int i=0;i<max_players;i++){
-        names[i] = player_array[i]->getName();
+void Game::sortPlayers(Game& game) {
+    int players_in_game = game.playersInGame();
+    Player* temp;
+    for (int i = 0; i < players_in_game-1; i++) {
+        for (int j = 0; j < players_in_game - i - 1; j++) {
+            if(*player_array[j]>*player_array[j+1]){
+                temp = player_array[j];
+                player_array[j+1] = player_array[j];
+                player_array[j] = temp;
+            }
+        }
     }
+}
 
-
+ostream& Game::operator<<(ostream& os,const Game &game){
+    sortPlayers(game);
+    for(int i=0;i<game.playersInGame();i++){
+        os << *player_array[i];
+    }
+    return os;
 
 }
