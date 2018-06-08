@@ -48,12 +48,10 @@ GameStatus Game::makeStep(const char *playerName) {
 }
 
 GameStatus Game::addLife(const char *playerName) {
-    for (int i=0;i<max_players;i++) {
-        if (player_array[i]) {
-            if (player_array[i]->isPlayer(playerName)) {
-                player_array[i]->addLife();
-                return SUCCESS;
-            }
+    for (int i=0;i<number_of_players;i++) {
+        if (player_array[i]->isPlayer(playerName)) {
+            player_array[i]->addLife();
+            return SUCCESS;
         }
     }
     return NAME_DOES_NOT_EXIST;
@@ -63,15 +61,15 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
     if(strengthToAdd<0){
         return INVALID_PARAM;
     }
-    for (int i=0;i<max_players;i++) {
-        if(player_array[i]) {
-            if (player_array[i]->isPlayer(playerName)) {
-                player_array[i]->addStrength(strengthToAdd);
-                return SUCCESS;
-            }
+    if(!playerExist(playerName)){
+        return NAME_DOES_NOT_EXIST;
+    }
+    for(int i=0;i<number_of_players;i++) {
+        if(player_array[i]->isPlayer(playerName)) {
+            player_array[i]->addStrength(strengthToAdd);
+            return SUCCESS;
         }
     }
-    return NAME_DOES_NOT_EXIST;
 }
 
 bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
