@@ -52,6 +52,7 @@ Player::~Player() {
  */
 Player& Player::operator=(const Player &player) {
     if(this==&player){
+        /* Self assignment. */
         return *this;
     }
     delete[] name;
@@ -218,6 +219,13 @@ bool Player::fight(Player &player) {
     return true;
 }
 
+/**
+ * attack
+ *
+ * Attacks a given player.
+ *
+ * @param player - Player to attack.
+ */
 void Player::attack(Player &player) const {
     switch(weapon.getTarget()) {
         case LEVEL : this->hitLevel(player);
@@ -229,10 +237,27 @@ void Player::attack(Player &player) const {
     }
 }
 
+/**
+ * operator==
+ *
+ * @param player1 - First player to compare.
+ * @param player2 - Second player to compare.
+ *
+ * @return
+ * True - Players are equal (by comparing their names).
+ * False - Otherwise.
+ */
 bool operator==(const Player& player1, const Player& player2){
     return player1.isPlayer(player2.name);
 }
 
+/**
+ * hitLife
+ *
+ * Hits life of given player.
+ *
+ * @param player - Player taking the damage.
+ */
 void Player::hitLife(Player& player)const {
     player.life-=weapon.getHitStrength();
     if(player.life<0){
@@ -240,6 +265,13 @@ void Player::hitLife(Player& player)const {
     }
 }
 
+/**
+ * hitLevel
+ *
+ * Hits level of given player.
+ *
+ * @param player - Player taking the damage.
+ */
 void Player::hitLevel(Player& player)const {
     player.level-=weapon.getHitStrength();
     if(player.level<0){
@@ -247,6 +279,13 @@ void Player::hitLevel(Player& player)const {
     }
 }
 
+/**
+ * hitStrength
+ *
+ * Hits strength of given player.
+ *
+ * @param player - Player taking the damage.
+ */
 void Player::hitStrength(Player& player)const {
     player.strength-=weapon.getHitStrength();
     if(player.strength<0){
