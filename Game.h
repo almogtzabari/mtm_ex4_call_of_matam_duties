@@ -28,7 +28,12 @@ public:
     GameStatus addPlayer(const char* playerName,const char* weaponName,
     Target target,int hit_strenth);
     GameStatus nextLevel(const char* playerName);
+    GameStatus makeStep(const char* playerName);
+    GameStatus addLife(const char* playerName);
+    GameStatus addStrength(const char* playerName, int strengthToAdd);
+    bool removeAllPlayersWithWeakWeapon (int weaponStrength);
 };
+
 
 
 
