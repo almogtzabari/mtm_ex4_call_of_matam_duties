@@ -1,0 +1,26 @@
+INPUT RESULT
+player 0: {player name: ari, weapon: {weapon name: lazer gun, weapon value:5}},
+player 1: {player name: itai, weapon: {weapon name: lazer gun, weapon value:5}},
+player 2: {player name: liad, weapon: {weapon name: pirate sword, weapon value:14}},
+player 3: {player name: sean, weapon: {weapon name: light saver, weapon value:18}},
+player 4: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+player 5: {player name: yuval, weapon: {weapon name: ATOM, weapon value:10}},
+REMOVE RESULT
+player 0: {player name: sean, weapon: {weapon name: light saver, weapon value:18}},
+player 1: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+INPUT AFTER REMOVE RESULT
+player 0: {player name: sagiv, weapon: {weapon name: m16, weapon value:10}},
+player 1: {player name: sean, weapon: {weapon name: light saver, weapon value:18}},
+player 2: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+player 3: {player name: tomer, weapon: {weapon name: ak47, weapon value:30}},
+FIRST FIGHT
+player 0: {player name: sean, weapon: {weapon name: light saver, weapon value:18}},
+player 1: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+player 2: {player name: tomer, weapon: {weapon name: ak47, weapon value:30}},
+SECOND FIGHT
+player 0: {player name: sean, weapon: {weapon name: light saver, weapon value:18}},
+player 1: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+player 2: {player name: tomer, weapon: {weapon name: ak47, weapon value:30}},
+FINALE FIGHT
+player 0: {player name: seana, weapon: {weapon name: ATOM, weapon value:30}},
+player 1: {player name: tomer, weapon: {weapon name: ak47, weapon value:30}},
