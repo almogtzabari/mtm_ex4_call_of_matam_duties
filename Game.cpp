@@ -126,7 +126,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
 }
 
 
-ostream& Game::operator<<(ostream& os, Game& game){
+ostream& operator<<(ostream& os,Game& game){
     /* Counting players in game: */
     int players_in_game=0;
     for(int i=0;i<game.max_players;i++){
@@ -149,5 +149,4 @@ ostream& Game::operator<<(ostream& os, Game& game){
         os << "Player "<<i<<":"<< *game.player_array[i] << std::endl;
     }
     return os;
-
 }
