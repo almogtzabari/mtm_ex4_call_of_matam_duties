@@ -32,6 +32,7 @@ public:
     GameStatus addLife(const char* playerName);
     GameStatus addStrength(const char* playerName, int strengthToAdd);
     bool removeAllPlayersWithWeakWeapon (int weaponStrength);
+    GameStatus fight(const char* playerName1, const char* playerName2);
 };
 
 

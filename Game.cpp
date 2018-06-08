@@ -88,4 +88,31 @@ bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
     return removed;
 }
 
+GameStatus Game::fight(const char *playerName1, const char *playerName2) {
+    int player1_index=0, player2_index=0;
+    bool found1=false, found2= false;
+    for (int i=0;i<max_players;i++) {
+        if(player_array[i]->isPlayer(playerName1)){
+            player1_index=i;
+            found1=true;
+        }
+        if(player_array[i]->isPlayer(playerName2)){
+            player2_index=i;
+            found2=true;
+        }
+    }
+    if(!found1 || !found2){
+        return NAME_DOES_NOT_EXIST;
+    }
+    if(!player_array[player1_index]->fight(*player_array[player2_index])){
+        return FIGHT_FAILED;
+    }
+    if(!player_array[player1_index]->isAlive()){
+        delete player_array[player1_index];
+    }
+    if(!player_array[player2_index]->isAlive()){
+        delete player_array[player2_index];
+    }
+    return SUCCESS;
+}
 

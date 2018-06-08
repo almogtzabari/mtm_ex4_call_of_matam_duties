@@ -29,11 +29,6 @@ Weapon::~Weapon() {
     delete[] name;
 }
 
-Weapon::Weapon(const Weapon& weapon) :
-        name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
-hitStrength(weapon.hitStrength){
-    strcpy(name,weapon.name);
-}
 
 Target Weapon::getTarget() const {
     return target;
@@ -75,3 +70,8 @@ ostream& operator<<(ostream& os, const Weapon& weapon){
              weapon.getValue();
 }
 
+Weapon::Weapon(const Weapon& weapon) :
+        name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
+        hitStrength(weapon.hitStrength){
+    strcpy(name,weapon.name);
+}
