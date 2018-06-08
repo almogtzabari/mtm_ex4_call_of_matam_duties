@@ -45,8 +45,6 @@ Player::~Player() {
 /**
  * Operator=
  *
- * Assign the given player.
- *
  * @param player - Player we want to assign.
  *
  * @return
@@ -70,8 +68,6 @@ Player& Player::operator=(const Player &player) {
 /**
  * operator<<
  *
- * Prints the given player.
- *
  * @param os - Will be used to concatenate.
  * @param player - Player we want to print.
  *
@@ -79,7 +75,7 @@ Player& Player::operator=(const Player &player) {
  * Stream of Player details.
  */
 ostream& operator<<(ostream& os, const Player& player){
-    return os << "{Player name: " << player.name << "," <<" weapon: " <<
+    return os << "{player name: " << player.name << "," <<" weapon: " <<
               player.weapon << "}";
 }
 
@@ -96,7 +92,8 @@ void Player::nextLevel() {
 /**
  * isPlayer
  *
- * Gets a name and check if the given name is the player.
+ * Gets a name and a player and checks if the given player has the given
+ * name.
  *
  * @param playerName - Name of the player.
  *
@@ -156,10 +153,13 @@ bool Player::isAlive() const {
 /**
  * weaponIsWeak
  *
- * Checks if player's weapon is weaker than given
+ * Checks if player's weapon is weaker than given amount.
  *
- * @param weaponMinStrength
+ * @param weaponMinStrength - Amount.
+ *
  * @return
+ * True - Player's weapon is weaker than given amount.
+ * False - Otherwise.
  */
 bool Player::weaponIsWeak(int weaponMinStrength)const {
     return (weapon.getValue()<weaponMinStrength);
@@ -208,6 +208,7 @@ bool Player::fight(Player &player) {
          * shouldn't fight .*/
         return false;
     }
+    /* Players can fight. Now determine who attack who:*/
     if(weapon>player.weapon){
         (*this).attack(player);
     }
@@ -217,29 +218,38 @@ bool Player::fight(Player &player) {
     return true;
 }
 
-void Player::attack(Player &defender) const {
+void Player::attack(Player &player) const {
     switch(weapon.getTarget()) {
-        case LEVEL :
-            defender.level -= this->weapon.getHitStrength();
-            if (defender.level < 0) {
-                defender.level = 0;
-            }
+        case LEVEL : this->hitLevel(player);
             return;
-        case LIFE :
-            defender.life -= this->weapon.getHitStrength();
-            if (defender.life < 0) {
-                defender.life = 0;
-            }
+        case LIFE : this->hitLife(player);
             return;
-        case STRENGTH :
-            defender.strength -= this->weapon.getHitStrength();
-            if (defender.strength < 0) {
-                defender.strength = 0;
-            }
+        case STRENGTH : this->hitStrength(player);
             return;
     }
 }
 
 bool operator==(const Player& player1, const Player& player2){
     return player1.isPlayer(player2.name);
+}
+
+void Player::hitLife(Player& player)const {
+    player.life-=weapon.getHitStrength();
+    if(player.life<0){
+        player.life=0;
+    }
+}
+
+void Player::hitLevel(Player& player)const {
+    player.level-=weapon.getHitStrength();
+    if(player.level<0){
+        player.level=0;
+    }
+}
+
+void Player::hitStrength(Player& player)const {
+    player.strength-=weapon.getHitStrength();
+    if(player.strength<0){
+        player.strength=0;
+    }
 }

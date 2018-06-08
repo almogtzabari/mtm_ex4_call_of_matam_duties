@@ -15,7 +15,11 @@ class Player {
     int strength;
     Weapon weapon;
     int position;
-    void attack(Player& defender)const ;
+
+    void attack(Player& player)const ;
+    void hitLife(Player& player)const;
+    void hitLevel(Player& player)const;
+    void hitStrength(Player& player)const;
 
 public:
     Player();
