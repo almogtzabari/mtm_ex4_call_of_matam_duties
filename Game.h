@@ -25,6 +25,7 @@ class Game {
     Player** player_array;
     bool isFull()const;
     bool playerExist(const char* player_name)const;
+    void removePlayer(const Player& player);
 public:
     Game(int maxPlayer);
     ~Game();

@@ -73,26 +73,14 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
 }
 
 bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
-    bool removed=false;
-    for (int i=0;i<max_players;i++) {
-        if(player_array[i]) {
-            if (player_array[i]->weaponIsWeak(weaponStrength)) {
-                delete player_array[i];
-                for (int j=max_players-1;j>=0 ;j--) {
-                    if(player_array[j]){
-                        player_array[i]=player_array[j];
-                        player_array[j]= nullptr;
-                        break;
-                    }
-                }
-                removed = true;
-            }
+    int count=0;
+    for (int i=0;i<number_of_players;i++) {
+        if (player_array[i]->weaponIsWeak(weaponStrength)) {
+            removePlayer(*player_array[i]);
+            count++;
         }
     }
-    if(removed){
-        return removed;
-    }
-    return removed;
+    return count>0;
 }
 
 GameStatus Game::fight(const char *playerName1, const char *playerName2) {
@@ -142,17 +130,10 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
 
 
 ostream& operator<<(ostream& os,Game& game){
-    /* Counting number_of_players in game: */
-    int players_in_game=0;
-    for(int i=0;i<game.max_players;i++){
-        if(game.player_array[i]){
-            players_in_game++;
-        }
-    }
     /* Sorting number_of_players: */
     Player* temp;
-    for (int i = 0; i < players_in_game; i++) {
-        for (int j = 0; j < players_in_game - i - 1; j++) {
+    for (int i = 0; i < game.number_of_players; i++) {
+        for (int j = 0; j < game.number_of_players - i - 1; j++) {
             if(*game.player_array[j]>*game.player_array[j+1]){
                 temp = game.player_array[j];
                 game.player_array[j] = game.player_array[j+1];
@@ -160,7 +141,7 @@ ostream& operator<<(ostream& os,Game& game){
             }
         }
     }
-    for(int i=0;i<players_in_game;i++){
+    for(int i=0;i<game.number_of_players;i++){
         os << "Player "<<i<<": "<< *game.player_array[i]<<","<< std::endl;
     }
     return os;
@@ -177,4 +158,13 @@ bool Game::playerExist(const char *player_name) const {
         }
     }
     return false;
+}
+
+void Game::removePlayer(const Player& player){
+    for (int i=0;i<number_of_players;i++) {
+        if(player==*player_array[i]){
+            *player_array[number_of_players--]=player;
+            *player_array[i]=*player_array[number_of_players];
+        }
+    }
 }
