@@ -115,13 +115,16 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
     int player1_index=0, player2_index=0;
     bool found1=false, found2= false;
     for (int i=0;i<max_players;i++) {
-        if(player_array[i]->isPlayer(playerName1)){
-            player1_index=i;
-            found1=true;
-        }
-        if(player_array[i]->isPlayer(playerName2)){
-            player2_index=i;
-            found2=true;
+        if(player_array[i]){
+            /*  Player is not nullptr. */
+            if(player_array[i]->isPlayer(playerName1)){
+                player1_index=i;
+                found1=true;
+            }
+            if(player_array[i]->isPlayer(playerName2)){
+                player2_index=i;
+                found2=true;
+            }
         }
     }
     if(!found1 || !found2){
