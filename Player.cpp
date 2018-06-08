@@ -208,34 +208,34 @@ bool Player::fight(Player &player) {
          * shouldn't fight .*/
         return false;
     }
-    Player attacker,defender;
     if(weapon>player.weapon){
-        attacker = *this;
-        defender = player;
+        (*this).attack(player);
     }
     else {
-        attacker = player;
-        defender = *this;
+        player.attack(*this);
     }
-    switch(attacker.weapon.getTarget()) {
+    return true;
+}
+
+void Player::attack(Player &defender) const {
+    switch(weapon.getTarget()) {
         case LEVEL :
-            defender.level -= attacker.weapon.getHitStrength();
+            defender.level -= this->weapon.getHitStrength();
             if (defender.level < 0) {
                 defender.level = 0;
             }
-            break;
+            return;
         case LIFE :
-            defender.life -= attacker.weapon.getHitStrength();
+            defender.life -= this->weapon.getHitStrength();
             if (defender.life < 0) {
                 defender.life = 0;
             }
-            break;
+            return;
         case STRENGTH :
-            defender.strength -= attacker.weapon.getHitStrength();
+            defender.strength -= this->weapon.getHitStrength();
             if (defender.strength < 0) {
                 defender.strength = 0;
             }
-            break;
+            return;
     }
-    return true;
 }

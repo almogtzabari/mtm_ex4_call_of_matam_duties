@@ -15,6 +15,7 @@ class Player {
     int strength;
     Weapon weapon;
     int position;
+    void attack(Player& defender)const ;
 
 public:
     Player();
@@ -33,6 +34,7 @@ public:
     friend ostream& operator<<(ostream& os, const Player& player);
     friend bool operator<(const Player& player1,const Player& player2);
     friend bool operator>(const Player& player1,const Player& player2);
+
 
 };
 
