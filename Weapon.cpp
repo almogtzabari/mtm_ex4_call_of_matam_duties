@@ -19,7 +19,7 @@ Weapon::Weapon(const char* name, Target target, int hitStrength) :
  * Default constructor
  */
 Weapon::Weapon() : name(nullptr){
-};
+}
 
 /**
  * Operator=
