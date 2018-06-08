@@ -26,6 +26,7 @@ class Game {
     bool isFull()const;
     bool playerExist(const char* player_name)const;
     void removePlayer(const Player& player);
+    int getIndexOfPlayerByName(const char* playerName)const;
 public:
     Game(int maxPlayer);
     ~Game();
