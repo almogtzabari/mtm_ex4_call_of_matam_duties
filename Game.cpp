@@ -150,7 +150,7 @@ ostream& operator<<(ostream& os,Game& game){
         for (int j = 0; j < players_in_game - i - 1; j++) {
             if(*game.player_array[j]>*game.player_array[j+1]){
                 temp = game.player_array[j];
-                game.player_array[j+1] = game.player_array[j];
+                game.player_array[j] = game.player_array[j+1];
                 game.player_array[j] = temp;
             }
         }
