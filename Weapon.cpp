@@ -21,6 +21,17 @@ Weapon::Weapon() : name(nullptr){
 }
 
 /**
+ * Copy constructor
+ *
+ * @param weapon - Weapon to copy.
+ */
+Weapon::Weapon(const Weapon& weapon) :
+        name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
+        hitStrength(weapon.hitStrength){
+    strcpy(name,weapon.name);
+}
+
+/**
  * Destructor
  */
 Weapon::~Weapon() {
@@ -55,6 +66,7 @@ Weapon& Weapon::operator=(const Weapon& weapon) {
 Target Weapon::getTarget() const {
     return target;
 }
+
 /**
  * getHitStrength
  *
@@ -121,6 +133,7 @@ bool Weapon::operator>(const Weapon& weapon) const {
 }
 
 /**
+ * operator<
  *
  * @param weapon - Weapon to compare.
  *
@@ -144,15 +157,4 @@ bool Weapon::operator<(const Weapon& weapon) const {
 ostream& operator<<(ostream& os, const Weapon& weapon){
     return os<<"{weapon name: "<<weapon.name<< ","<<" weapon value:"<<
              weapon.getValue()<<"}";
-}
-
-/**
- * Copy constructor
- *
- * @param weapon - Weapon to copy.
- */
-Weapon::Weapon(const Weapon& weapon) :
-        name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
-        hitStrength(weapon.hitStrength){
-    strcpy(name,weapon.name);
 }
