@@ -68,6 +68,23 @@ void removePlayer(const Player& player);
  */
 int getPlayerIndexByName(const char *playerName)const;
 
+/**
+ * swap
+ *
+ * Swaping to players.
+ *
+ * @param player1_ptr - Pointer of first player.
+ * @param player2_ptr - Pointer of second player.
+ */
+void swap(Player* player1_ptr, Player* player2_ptr);
+
+/**
+ * sortPlayers
+ *
+ * Sorting (bubble sort) players array (only the real players) by name.
+ */
+void sortPlayers();
+
 //-----------------------------------------------------------------------//
 //                         PUBLIC METHODS:                               //
 //-----------------------------------------------------------------------//
@@ -197,9 +214,5 @@ GameStatus fight(const char* playerName1, const char* playerName2);
  */
 friend ostream& operator<<(ostream& os, Game& game);
 };
-
-
-
-
 
 #endif //MTM_EX4_CALL_OF_MATAM_DUTIES_GAME_H

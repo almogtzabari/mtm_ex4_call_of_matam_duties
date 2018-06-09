@@ -66,11 +66,11 @@ GameStatus Game::addPlayer(const char *playerName, const char *weaponName,
  */
 GameStatus Game::nextLevel(const char *playerName) {
     int player_index = getPlayerIndexByName(playerName);
-    if(player_index!=-1){
-        player_array[player_index]->nextLevel();
-        return SUCCESS;
+    if(player_index==-1){
+        return NAME_DOES_NOT_EXIST;
     }
-    return NAME_DOES_NOT_EXIST;
+    player_array[player_index]->nextLevel();
+    return SUCCESS;
 }
 
 /**
@@ -86,11 +86,11 @@ GameStatus Game::nextLevel(const char *playerName) {
  */
 GameStatus Game::makeStep(const char *playerName) {
     int player_index = getPlayerIndexByName(playerName);
-    if(player_index!=-1){
-        player_array[player_index]->makeStep();
-        return SUCCESS;
+    if(player_index==-1){
+        return NAME_DOES_NOT_EXIST;
     }
-    return NAME_DOES_NOT_EXIST;
+    player_array[player_index]->makeStep();
+    return SUCCESS;
 }
 
 /**
@@ -106,11 +106,11 @@ GameStatus Game::makeStep(const char *playerName) {
  */
 GameStatus Game::addLife(const char *playerName) {
     int player_index = getPlayerIndexByName(playerName);
-    if(player_index!=-1){
-        player_array[player_index]->addLife();
-        return SUCCESS;
+    if(player_index==-1){
+        return NAME_DOES_NOT_EXIST;
     }
-    return NAME_DOES_NOT_EXIST;
+    player_array[player_index]->addLife();
+    return SUCCESS;
 }
 
 /**
@@ -131,11 +131,12 @@ GameStatus Game::addStrength(const char *playerName, int strengthToAdd) {
         return INVALID_PARAM;
     }
     int player_index = getPlayerIndexByName(playerName);
-    if(player_index!=-1){
-        player_array[player_index]->addStrength(strengthToAdd);
-        return SUCCESS;
+    if(player_index==-1){
+        return NAME_DOES_NOT_EXIST;
     }
-    return NAME_DOES_NOT_EXIST;
+    player_array[player_index]->addStrength(strengthToAdd);
+    return SUCCESS;
+
 }
 
 /**
@@ -154,6 +155,10 @@ bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
     for (int i=0;i<number_of_players;i++) {
         if (player_array[i]->weaponIsWeak(weaponStrength)) {
             removePlayer(*player_array[i--]);
+            /* Notice: removePlayer puts the last valid player in the array
+             * in the position of the removed player. Therefore, after
+             * remove there will be a new player at index i so we need to
+             * check that index again (i--). */
             count++;
         }
     }
@@ -175,7 +180,6 @@ bool Game::removeAllPlayersWithWeakWeapon(int weaponStrength) {
  *
  */
 GameStatus Game::fight(const char *playerName1, const char *playerName2) {
-
     int player1_index = getPlayerIndexByName(playerName1);
     int player2_index = getPlayerIndexByName(playerName2);
     if(player1_index==-1 || player2_index==-1){
@@ -209,17 +213,8 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
  * Stream of game details.
  */
 ostream& operator<<(ostream& os,Game& game){
-    /* Sorting (bubble) number_of_players: */
-    Player* temp;
-    for (int i = 0; i < game.number_of_players; i++) {
-        for (int j = 0; j < game.number_of_players - i - 1; j++) {
-            if(*game.player_array[j]>*game.player_array[j+1]){
-                temp = game.player_array[j];
-                game.player_array[j] = game.player_array[j+1];
-                game.player_array[j+1] = temp;
-            }
-        }
-    }
+    /* Sorting players' array before printing. */
+    game.sortPlayers();
     for(int i=0;i<game.number_of_players;i++){
         os << "player "<<i<<": "<< *game.player_array[i]<<","<< std::endl;
     }
@@ -287,4 +282,33 @@ int Game::getPlayerIndexByName(const char *playerName) const {
         }
     }
     return -1;
+}
+
+/**
+ * swap
+ *
+ * Swaping to players.
+ *
+ * @param player1_ptr - Pointer of first player.
+ * @param player2_ptr - Pointer of second player.
+ */
+void Game::swap(Player* player1_ptr, Player* player2_ptr) {
+    Player temp = *player1_ptr;
+    *player1_ptr = *player2_ptr;
+    *player2_ptr = temp;
+}
+
+/**
+ * sortPlayers
+ *
+ * Sorting (bubble sort) players array (only the real players) by name.
+ */
+void Game::sortPlayers() {
+    for (int i = 0; i < number_of_players; i++) {
+        for (int j = 0; j < number_of_players - i - 1; j++) {
+            if(*player_array[j]>*player_array[j+1]){
+                swap(player_array[j],player_array[j+1]);
+            }
+        }
+    }
 }

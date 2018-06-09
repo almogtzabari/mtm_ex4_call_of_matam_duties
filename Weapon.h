@@ -143,7 +143,4 @@ Weapon& operator=(const Weapon& weapon);
 friend ostream& operator<<(ostream& os, const Weapon& weapon);
 };
 
-
-
-
 #endif //MTM_EX4_CALL_OF_MATAM_DUTIES_WEAPON_H
