@@ -32,7 +32,7 @@ Weapon::~Weapon() {
  * @param weapon - Weapon to assign.
  *
  * @return
- * A reference to new assigned weapon.
+ * Reference to new assigned weapon.
  */
 Weapon& Weapon::operator=(const Weapon& weapon) {
     if (this==&weapon){
@@ -69,7 +69,7 @@ int Weapon::getHitStrength() const {
  * getValue
  *
  * @return
- * Gets the value of the weapon.
+ * Value of the weapon.
  */
 int Weapon::getValue() const {
     if(target==LEVEL){
@@ -87,7 +87,7 @@ int Weapon::getValue() const {
  * @param weapon - A weapon to compare.
  *
  * @return
- * True -Both weapons has the same value.
+ * True - Both weapons has the same value.
  * False - Otherwise.
  */
 bool Weapon::operator==(const Weapon& weapon) const {
@@ -135,7 +135,7 @@ bool Weapon::operator<(const Weapon& weapon) const {
 /**
  * operator<<
  *
- * @param os - Will be used to concatenate.
+ * @param os - Stream to concatenate to.
  * @param player - Weapon we want to print.
  *
  * @return
@@ -149,7 +149,7 @@ ostream& operator<<(ostream& os, const Weapon& weapon){
 /**
  * Copy constructor
  *
- * @param weapon - Weapon we want to copy.
+ * @param weapon - Weapon to copy.
  */
 Weapon::Weapon(const Weapon& weapon) :
         name(new char[(strlen(weapon.name)+1)]),target(weapon.target),

@@ -11,7 +11,7 @@ Player::Player(): name(nullptr),level(1),life(1),
 /**
  * Copy constructor
  *
- * @param player - Player we want to copy.
+ * @param player - Player to copy.
  */
 Player::Player(const Player& player):
         name(new char[strlen(player.name)+1]),level(player.level),
@@ -45,10 +45,10 @@ Player::~Player() {
 /**
  * Operator=
  *
- * @param player - Player we want to assign.
+ * @param player - Player to assign.
  *
  * @return
- * Player after assignment.
+ * Reference to the player after assignment.
  */
 Player& Player::operator=(const Player &player) {
     if(this==&player){
@@ -69,8 +69,8 @@ Player& Player::operator=(const Player &player) {
 /**
  * operator<<
  *
- * @param os - Will be used to concatenate.
- * @param player - Player we want to print.
+ * @param os - Stream to concatenate to.
+ * @param player - Player to print.
  *
  * @return
  * Stream of Player details.
@@ -83,7 +83,7 @@ ostream& operator<<(ostream& os, const Player& player){
 /**
  * nextLevel
  *
- * Increasing level of given player by 1.
+ * Increasing player's level by 1.
  *
  */
 void Player::nextLevel() {
@@ -93,10 +93,9 @@ void Player::nextLevel() {
 /**
  * isPlayer
  *
- * Gets a name and a player and checks if the given player has the given
- * name.
+ * Checks if the player has the given name.
  *
- * @param playerName - Name of the player.
+ * @param playerName - Name to compare to.
  *
  * @return
  * True - Player's name is the given name.

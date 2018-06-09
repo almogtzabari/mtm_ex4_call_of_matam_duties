@@ -1,6 +1,5 @@
 
 #include "Game.h"
-#include "Player.h"
 using std::ostream;
 
 /**
@@ -192,7 +191,7 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
 /**
  * operator<<
  *
- * @param os - Will be used to concatenate.
+ * @param os - Stream to concatenate to.
  * @param game - Game to print its details.
  *
  * @return
