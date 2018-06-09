@@ -120,15 +120,37 @@ bool Weapon::operator>(const Weapon& weapon) const {
     return this->getValue()>weapon.getValue();
 }
 
+/**
+ *
+ * @param weapon - Weapon to compare.
+ *
+ * @return
+ * True - Given weapon has bigger value than *this.
+ * False - Otherwise.
+ */
 bool Weapon::operator<(const Weapon& weapon) const {
     return this->getValue()<weapon.getValue();
 }
 
+/**
+ * operator<<
+ *
+ * @param os - Will be used to concatenate.
+ * @param player - Weapon we want to print.
+ *
+ * @return
+ * Stream of weapon details.
+ */
 ostream& operator<<(ostream& os, const Weapon& weapon){
     return os<<"{weapon name: "<<weapon.name<< ","<<" weapon value:"<<
              weapon.getValue()<<"}";
 }
 
+/**
+ * Copy constructor
+ *
+ * @param weapon - Weapon we want to copy.
+ */
 Weapon::Weapon(const Weapon& weapon) :
         name(new char[(strlen(weapon.name)+1)]),target(weapon.target),
         hitStrength(weapon.hitStrength){
