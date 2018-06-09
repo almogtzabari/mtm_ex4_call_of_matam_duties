@@ -84,13 +84,13 @@ int Weapon::getHitStrength() const {
  * Value of the weapon.
  */
 int Weapon::getValue() const {
-    if(target==LEVEL){
-        return 1*hitStrength;
+    switch (target){
+        case LEVEL: return 1*hitStrength;
+        case STRENGTH: return 2*hitStrength;
+        case LIFE: return 3*hitStrength;
     }
-    if(target==STRENGTH){
-        return 2*hitStrength;
-    }
-    return 3*hitStrength;
+    /* Shouldn't get here. */
+    return 0;
 }
 
 /**

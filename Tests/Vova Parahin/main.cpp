@@ -162,8 +162,8 @@ void memoryTestUnit() {
     Game game = Game(1);
     Game game2 = Game(2);
     game2.addPlayer("Linoy", "lazer gun", LEVEL, 1);
-    game = game2; //assignment test
-    game = game;
+//    game = game2; //assignment test
+//    game = game;
   }
 }
 
