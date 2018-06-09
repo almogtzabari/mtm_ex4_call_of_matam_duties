@@ -189,8 +189,17 @@ GameStatus Game::fight(const char *playerName1, const char *playerName2) {
 }
 
 
+/**
+ * operator<<
+ *
+ * @param os - Will be used to concatenate.
+ * @param game - Game to print its details.
+ *
+ * @return
+ * Stream of game details.
+ */
 ostream& operator<<(ostream& os,Game& game){
-    /* Sorting number_of_players: */
+    /* Sorting (bubble) number_of_players: */
     Player* temp;
     for (int i = 0; i < game.number_of_players; i++) {
         for (int j = 0; j < game.number_of_players - i - 1; j++) {
@@ -207,10 +216,26 @@ ostream& operator<<(ostream& os,Game& game){
     return os;
 }
 
+/**
+ * isFull
+ *
+ * @return
+ * True - Game is full.
+ * False - Game is not full.
+ */
 bool Game::isFull() const {
     return number_of_players == max_players;
 }
 
+/**
+ * playerExist
+ *
+ * @param player_name - Name of the player to check if exists.
+ *
+ * @return
+ * True - Player with given name exists.
+ * False - Player with given name does not exists.
+ */
 bool Game::playerExist(const char *player_name) const {
     for(int i=0; i<number_of_players;i++){
         if(player_array[i]->isPlayer(player_name)){
@@ -220,6 +245,13 @@ bool Game::playerExist(const char *player_name) const {
     return false;
 }
 
+/**
+ * removePlayer
+ *
+ * Removing player from the game.
+ *
+ * @param player -  Player to remove.
+ */
 void Game::removePlayer(const Player& player){
     for (int i=0;i<number_of_players;i++) {
         if(player == *player_array[i]){
@@ -229,6 +261,15 @@ void Game::removePlayer(const Player& player){
     }
 }
 
+/**
+ * getPlayerIndexByName
+ *
+ * @param playerName - Name of the player to get its index.
+ *
+ * @return
+ * Index of the player with the given name.
+ * If not found returns -1.
+ */
 int Game::getPlayerIndexByName(const char *playerName) const {
     for(int i=0;i<number_of_players;i++){
         if(player_array[i]->isPlayer(playerName)){
